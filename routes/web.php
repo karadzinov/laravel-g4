@@ -23,3 +23,12 @@ Route::get('/hello', function () {
 });
 
 
+Route::get('/neshto-tuka', function() {
+   echo "Hello from this route";
+});
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('/users', App\Http\Controllers\UserController::class);
