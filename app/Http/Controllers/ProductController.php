@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -21,6 +22,21 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'price' => 'required',
+            'quantity' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('products/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         Product::create([
             "name"          => $request->get('name'),
             "price"         => $request->get('price'),
@@ -50,6 +66,22 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'price' => 'required',
+            'quantity' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('products/'. $id . '/edit')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+
         $product = Product::FindOrFail($id);
         $product->fill($request->all())->save();
 

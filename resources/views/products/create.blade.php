@@ -8,28 +8,58 @@
 
             <div class="form-group">
                 <label for="name">Name your product:</label>
-                <input type="text" name="name" class="form-control" id="name">
+                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ old('name') }}" >
+                @error('name')
+                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                @enderror
             </div>
 
             <div class="form-group">
                 <label for="price">Price</label>
-                <input type="text" name="price" class="form-control" id="price">
+                <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" id="price" value="{{ old('price') }}" >
+                @error('price')
+                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                @enderror
             </div>
 
             <div class="form-group">
                 <label for="quantity">Quantity</label>
-                <input type="text" name="quantity" class="form-control" id="quantity">
+                <input type="text" name="quantity" class="form-control @error('quantity') is-invalid @enderror" id="quantity" value="{{ old('quantity') }}" >
+                @error('quantity')
+                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                @enderror
             </div>
 
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea id="description" name="description"></textarea>
+                <textarea id="description" name="description" class="form-control @error('description') is-invalid @enderror">
+
+
+                {{ old('description') }}
+                </textarea>
+                @error('description')
+                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                @enderror
             </div>
 
             <div class="form-group">
                 <label for="image">Image</label>
-                <input type="text" name="image" class="form-control" id="image">
+                <input type="text" name="image" class="form-control @error('description') is-invalid @enderror" id="image" value="{{ old('image') }}" >
             </div>
+
+            @error('image')
+            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+            @enderror
 
 
             <div class="form-group">
