@@ -6,6 +6,14 @@
         <p>You have created your account {{ $user->created_at->diffForHumans() }}</p>
 
 
+        <p>You have added these products:</p>
+
+        <ul>
+            @foreach($user->products as $product)
+                <li>{{ $product->name }}</li>
+            @endforeach
+        </ul>
+
         <form method="post" action="{{ route('users.destroy', $user->id) }}">
             @method('DELETE')
             @csrf

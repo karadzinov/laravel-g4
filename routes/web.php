@@ -42,3 +42,5 @@ Route::get('/products/{product}', [App\Http\Controllers\ProductController::class
 Route::get('/products/{product}/edit', [App\Http\Controllers\ProductController::class, 'edit'])->name('products.edit');
 Route::put('/products/{product}', [App\Http\Controllers\ProductController::class, 'update'])->name('products.update');
 Route::delete('/products/{product}', [App\Http\Controllers\ProductController::class, 'destroy'])->name('products.destroy');
+Route::get('/products/addgallery/{product}', [App\Http\Controllers\ProductController::class, 'gallery'])->name('products.gallery');
+Route::post('/products/addgallery/{product}', [App\Http\Controllers\ProductController::class, 'storeImage'])->name('products.store.image');

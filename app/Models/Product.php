@@ -16,6 +16,18 @@ class Product extends Model
         'price',
         'quantity',
         'description',
-        'image'
+        'image',
+        'user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function gallery()
+    {
+        return $this->hasMany(Gallery::class, 'product_id', 'id');
+    }
+
 }

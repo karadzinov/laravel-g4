@@ -32,6 +32,17 @@
             </div>
 
 
+            <div class="form-group">
+                <label for="user">User</label>
+                <select name="user_id" id="user" class="form-control">
+                    @foreach($users as $user)
+                        <option value="{{ $user->id }}" @if($product->user_id === $user->id) selected @endif>{{ $user->name }}</option>
+                    @endforeach
+                </select>
+
+            </div>
+
+
             <button type="submit" class="btn btn-primary">Update product</button>
 
 

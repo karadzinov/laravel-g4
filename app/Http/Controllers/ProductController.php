@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
+use App\Models\User;
+use App\Http\Controllers\Helpers\ImageStore;
+use App\Models\Gallery;
 
 class ProductController extends Controller
 {
@@ -17,7 +20,9 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('products.create');
+        $users = User::all();
+        $data = ['users' => $users];
+        return view('products.create')->with($data);
     }
 
     public function store(Request $request)
@@ -29,6 +34,7 @@ class ProductController extends Controller
             'quantity' => 'required',
             'description' => 'required',
             'image' => 'required',
+            'user_id' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -42,7 +48,8 @@ class ProductController extends Controller
             "price"         => $request->get('price'),
             "quantity"      => $request->get('quantity'),
             "description"   => $request->get('description'),
-            "image"         => $request->get('image')
+            "image"         => $request->get('image'),
+            "user_id"       => $request->get('user_id')
         ]);
 
         return redirect()->route('products.index');
@@ -59,7 +66,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::FindOrFail($id);
-        $data = ['product' => $product];
+        $users = User::all();
+        $data = ['product' => $product, 'users' => $users];
 
         return view('products.edit')->with($data);
     }
@@ -73,6 +81,7 @@ class ProductController extends Controller
             'quantity' => 'required',
             'description' => 'required',
             'image' => 'required',
+            'user_id' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -94,5 +103,24 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('products.index');
+    }
+
+    public function gallery($id)
+    {
+       $product = Product::where('id', '=',  $id)->first();
+       $data = ['product' => $product];
+
+       return view('products.gallery')->with($data);
+    }
+
+    public function storeImage(Request $request, $id)
+    {
+       $image = new ImageStore($request, 'gallery');
+       $image = $image->imageStore();
+       Gallery::create([
+           'product_id'     => $id,
+           'image'          => $image
+       ]);
+       return redirect()->route('products.index');
     }
 }

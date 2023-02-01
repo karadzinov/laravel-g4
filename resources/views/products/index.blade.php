@@ -13,7 +13,10 @@
             <th>Quantity</th>
             <th>Description</th>
             <th>Image</th>
+            <th>User</th>
             <th>Actions</th>
+            <th>Gallery</th>
+
         </tr>
         </thead>
         <tbody>
@@ -25,6 +28,7 @@
                 <td>{{ $product->quantity }}</td>
                 <td>{{ $product->description }}</td>
                 <td>{{ $product->image }}</td>
+                <td>{{ $product->user->name }}</td>
                 <td>
                     <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning">Edit</a>
                     <form method="post" action="{{ route('products.destroy', $product->id) }}">
@@ -32,6 +36,9 @@
                         @method('DELETE')
                         <button class="btn btn-danger">Delete</button>
                     </form>
+                </td>
+                <td>
+                    <a href="/products/addgallery/{{ $product->id }}" class="btn btn-info">Add Gallery</a>
                 </td>
             </tr>
         @endforeach
