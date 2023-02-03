@@ -38,7 +38,7 @@
                     </form>
                 </td>
                 <td>
-                    <a href="/products/addgallery/{{ $product->id }}" class="btn btn-info">Add Gallery</a>
+                    <a href="{{ route('products.gallery', $product->id) }}" class="btn btn-info">Add Gallery</a>
                 </td>
             </tr>
         @endforeach
