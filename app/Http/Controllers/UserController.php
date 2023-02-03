@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
 
 class UserController extends Controller
 {
@@ -26,7 +27,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $roles = Role::all();
+        $data = ['roles' => $roles];
+        return view('users.create')->with($data);
     }
 
     /**
@@ -75,7 +78,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::FindOrFail($id);
-        $data = ['user' => $user];
+        $roles = Role::all();
+        $data = ['user' => $user, 'roles' => $roles];
 
         return view('users.edit')->with($data);
     }

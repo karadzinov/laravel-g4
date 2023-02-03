@@ -16,6 +16,17 @@
                         <label for="email">Email address</label>
                         <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
                     </div>
+
+                    <div class="form-group">
+                        <label for="role">Roles</label>
+                        <select name="role_id" class="form-control" id="role">
+                            @foreach($roles as $role)
+                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password">
