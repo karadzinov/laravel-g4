@@ -35,7 +35,7 @@ Route::get('/blog', [App\Http\Controllers\HomeController::class, 'blog'])->name(
 
 
 
-Route::middleware(['web', 'auth', 'check.role'])->prefix('admin')->group(function () {
+Route::middleware(['web', 'auth', 'check.role:Administrator'])->prefix('admin')->group(function () {
 
     Route::resource('/users', App\Http\Controllers\UserController::class);
 
@@ -51,3 +51,4 @@ Route::middleware(['web', 'auth', 'check.role'])->prefix('admin')->group(functio
 
 });
 
+Route::get('/test-route', [App\Http\Controllers\ProductController::class, 'index'])->middleware('check.role:Editor');
