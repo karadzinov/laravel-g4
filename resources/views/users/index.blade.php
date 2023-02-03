@@ -1,13 +1,14 @@
 @extends('layouts.main')
 @section('section')
 
+    <div class="row">
+        <div class="col-4">
+            <a href="{{ route('users.create') }}" class="btn btn-success ">+ Create User</a>
+        </div>
+    </div>
     <div class="col-12">
         <div class="row">
-            <a href="{{ route('users.create') }}" class="btn btn-primary">Create User</a>
-        </div>
-
-        <div class="row">
-            <table class="table">
+            <table class="table mt-xl-4">
                 <thead>
                 <tr>
                     <th>ID</th>

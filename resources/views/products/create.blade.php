@@ -6,7 +6,7 @@
         <form method="post" action="{{ route('products.store') }}">
             @csrf
 
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label for="name">Name your product:</label>
                 <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name"
                        value="{{ old('name') }}">
@@ -17,7 +17,7 @@
                 @enderror
             </div>
 
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label for="price">Price</label>
                 <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" id="price"
                        value="{{ old('price') }}">
@@ -28,7 +28,7 @@
                 @enderror
             </div>
 
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label for="quantity">Quantity</label>
                 <input type="text" name="quantity" class="form-control @error('quantity') is-invalid @enderror"
                        id="quantity" value="{{ old('quantity') }}">
@@ -39,7 +39,7 @@
                 @enderror
             </div>
 
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label for="description">Description</label>
                 <textarea id="description" name="description"
                           class="form-control @error('description') is-invalid @enderror">
@@ -54,7 +54,7 @@
                 @enderror
             </div>
 
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label for="image">Image</label>
                 <input type="text" name="image" class="form-control @error('description') is-invalid @enderror"
                        id="image" value="{{ old('image') }}">
@@ -66,7 +66,7 @@
                                     </span>
             @enderror
 
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label for="user">User</label>
                 <select class="form-control" id="user" name="user_id">
                     @foreach($users as $user)
@@ -84,7 +84,7 @@
 
             <div class="form-group">
 
-                <button type="submit" class="btn btn-primary">Add product</button>
+                <button type="submit" class="btn btn-primary mt-xl-4">Add product</button>
             </div>
 
         </form>

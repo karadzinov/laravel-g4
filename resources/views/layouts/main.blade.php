@@ -40,9 +40,7 @@
         </div>
         -->
         <div class="col-3">
-            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
-
-
+            <div class="flex-column" style="width: 220px;">
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
                         <a href="/admin/users" class="btn btn-primary">Users</a>
@@ -54,13 +52,9 @@
 
                 </ul>
 
-
             </div>
         </div>
-
-
         <div class="col-9">
-
             @yield('section')
         </div>
     </div>
@@ -69,9 +63,11 @@
 
 <!-- End your project here-->
 
-<!-- MDB -->
+
+@yield('scripts')
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 <script type="text/javascript" src="/admin/js/mdb.min.js"></script>
-<!-- Custom scripts -->
 <script type="text/javascript"></script>
 </body>
 </html>

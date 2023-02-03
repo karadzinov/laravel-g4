@@ -1,10 +1,9 @@
 @extends('layouts.main')
 @section('section')
-    <div class="col-12">
-        <a href="{{ route('products.create') }}" class="btn btn-primary">Add Product</a>
+    <div class="col-2">
+        <a href="{{ route('products.create') }}" class="btn btn-success">+ Add Product</a>
     </div>
-
-    <table class="table table-bordered">
+    <table class="table mt-xl-4">
         <thead>
         <tr>
             <th>Id</th>
@@ -12,7 +11,6 @@
             <th>Price</th>
             <th>Quantity</th>
             <th>Description</th>
-            <th>Image</th>
             <th>User</th>
             <th>Actions</th>
             <th>Gallery</th>
@@ -27,18 +25,21 @@
                 <td>{{ $product->price }}</td>
                 <td>{{ $product->quantity }}</td>
                 <td>{{ $product->description }}</td>
-                <td>{{ $product->image }}</td>
                 <td>{{ $product->user->name }}</td>
                 <td>
-                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning">Edit</a>
-                    <form method="post" action="{{ route('products.destroy', $product->id) }}">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger">Delete</button>
-                    </form>
+                    <div class="row">
+                        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning btn-sm" >Edit</a>
+                    </div>
+                    <div class="row mt-2" style="width: 100%">
+                        <form method="post" action="{{ route('products.destroy', $product->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-sm" >Delete</button>
+                        </form>
+                    </div>
                 </td>
                 <td>
-                    <a href="{{ route('products.gallery', $product->id) }}" class="btn btn-info">Add Gallery</a>
+                    <a href="{{ route('products.gallery', $product->id) }}" class="btn btn-info btn-sm">Add Gallery</a>
                 </td>
             </tr>
         @endforeach
