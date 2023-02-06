@@ -45,4 +45,8 @@
         @endforeach
         </tbody>
     </table>
+
+    <div class="col-12">
+        {{ $products->links() }}
+    </div>
 @endsection

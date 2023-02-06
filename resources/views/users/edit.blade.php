@@ -31,6 +31,16 @@
                     @endforeach
                 </select>
             </div>
+
+
+            <div class="form-group mt-2">
+                <label for="country_id">Countries</label>
+                <select id="country_id" name="country_id" class="form-control">
+                    @foreach($countries as $country)
+                        <option value="{{ $country->id }}" @if($country->id === $user->country_id) selected @endif>{{ $country->name }}</option>
+                    @endforeach
+                </select>
+            </div>
             <button type="submit" class="btn btn-primary mt-xl-4">Submit</button>
 
 
