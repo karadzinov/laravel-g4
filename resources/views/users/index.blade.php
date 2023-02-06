@@ -15,6 +15,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Role</th>
+                    <td>Country</td>
                     <th>Created At</th>
                     <th>Action</th>
                 </tr>
@@ -26,6 +27,7 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->role->name }}</td>
+                        <td>{{ $user->country->name }}</td>
                         <td>{{ $user->created_at->diffForHumans() }}</td>
                         <td><a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning">Edit</a></td>
                     </tr>

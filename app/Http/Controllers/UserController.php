@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Countries;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
+
 
 class UserController extends Controller
 {
@@ -34,7 +36,8 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();
-        $data = ['roles' => $roles];
+        $countries = Countries::orderBy('name')->get();
+        $data = ['roles' => $roles, 'countries' => $countries];
         return view('users.create')->with($data);
     }
 
@@ -51,11 +54,14 @@ class UserController extends Controller
          $name = $request->get('name');
          $email = $request->get('email');
          $password = bcrypt($request->get('password'));
+         $role_id = $request->get('role_id');
 
          User::create([
              "name" => $name,
              "email" => $email,
-             "password" => $password
+             "password" => $password,
+             "role_id"  => $role_id,
+             "country_id" => $request->get('country_id')
          ]);
 
          return redirect()->route('users.index');
@@ -85,7 +91,9 @@ class UserController extends Controller
     {
         $user = User::FindOrFail($id);
         $roles = Role::all();
-        $data = ['user' => $user, 'roles' => $roles];
+        $countries = Countries::orderBy('name')->get();
+
+        $data = ['user' => $user, 'roles' => $roles, 'countries' => $countries];
 
         return view('users.edit')->with($data);
     }

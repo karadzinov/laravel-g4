@@ -28,6 +28,16 @@
 
 
                     <div class="form-group mt-2">
+                        <label for="country_id">Countries</label>
+                        <select name="country_id" class="form-control" id="country_id">
+                            @foreach($countries as $country)
+                                <option value="{{ $country->id }}">{{ $country->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+
+                    <div class="form-group mt-2">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password">
                     </div>
