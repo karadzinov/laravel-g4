@@ -331,6 +331,38 @@ class UserController extends Controller
         return response()->json($data, 200);
     }
 
+
+    /**
+     * @OA\Delete (
+     *      path="/api/users/{id}",
+     *      operationId="deleteUser",
+     *      tags={"Users"},
+     *      summary="Delete User",
+     *      description="Returns success",
+     *     @OA\Parameter(
+     *          name="id",
+     *          description="User id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation"
+     *       ),
+     *      @OA\Response(response=400, description="Bad request"),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     *      security={
+     *         {
+     *             "passport": {},
+     *         }
+     *     },
+     * )
+     */
+
+
     public function destroy($id)
     {
         $user = User::FindOrFail($id);
