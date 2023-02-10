@@ -33,6 +33,10 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/blog', [App\Http\Controllers\HomeController::class, 'blog'])->name('blog');
 
+Route::get('/chatgp', [\App\Http\Controllers\ChatGPController::class, 'index']);
+
+Route::post('/generateAnswer', [\App\Http\Controllers\ChatGPController::class, 'answer'])->name('chatgp');
+
 
 
 Route::middleware(['web', 'auth', 'check.role:Administrator'])->prefix('admin')->group(function () {
@@ -49,6 +53,7 @@ Route::middleware(['web', 'auth', 'check.role:Administrator'])->prefix('admin')-
     Route::get('/products/addgallery/{product}', [App\Http\Controllers\ProductController::class, 'gallery'])->name('products.gallery');
     Route::post('/products/addgallery/{product}', [App\Http\Controllers\ProductController::class, 'storeImage'])->name('products.store.image');
 
+    Route::resource('/categories', App\Http\Controllers\CategoriesController::class);
 });
 
 Route::get('/test-route', [App\Http\Controllers\ProductController::class, 'index'])->middleware('check.role:Editor');
